@@ -67,5 +67,12 @@ public class NYBus {
     public void unregister(Object object, String channelId) {
         mNYBusHandler.unregister(object, channelId);
     }
+    public void post(Object object) {
+        post(object, EventChannel.DEFAULT);
+    }
+
+    public void post(Object object, String channelId) {
+        mNYBusHandler.post(object, channelId);
+    }
 
 }

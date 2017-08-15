@@ -18,9 +18,11 @@ package sample.mindorks.com.nybus;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.mindorks.nybus.NYBus;
-import com.mindorks.nybus.channel.EventChannel;
+import com.mindorks.nybus.annotations.Subscribe;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         NYBus.get().register(this);
+        NYBus.get().post(new EventOne("08/01/1993","check"));
     }
 
     @Override
@@ -42,4 +45,14 @@ public class MainActivity extends AppCompatActivity {
         NYBus.get().unregister(this);
         super.onStop();
     }
+
+    @Subscribe
+        public void onEvent(String a){
+        Toast.makeText(this, "inside A", Toast.LENGTH_SHORT).show();
+    }
+    @Subscribe
+    public void onNew(EventOne b){
+        Toast.makeText(this, "inside B"+b.getName(), Toast.LENGTH_SHORT).show();
+    }
+
 }
