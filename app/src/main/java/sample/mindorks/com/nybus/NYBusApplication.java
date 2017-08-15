@@ -18,7 +18,6 @@ package sample.mindorks.com.nybus;
 
 import android.app.Application;
 
-import com.mindorks.nybus.AndroidNYBus;
 
 /**
  * Created by Jyoti on 14/08/17.

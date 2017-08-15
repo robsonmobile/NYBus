@@ -14,18 +14,12 @@
  *    limitations under the License.
  */
 
-package com.mindorks.nybus.internal;
-
-import com.mindorks.nybus.Scheduler.SchedulerProvider;
+package com.mindorks.nybus.channel;
 
 /**
- * Created by Jyoti on 14/08/17.
+ * Created by Jyoti on 15/08/17.
  */
 
-public class NYBusHandler {
-    private SchedulerProvider mSchedulerProvider;
-
-    public void setSchedulerProvider(SchedulerProvider mSchedulerProvider) {
-        this.mSchedulerProvider = mSchedulerProvider;
-    }
+public interface EventChannel {
+    String DEFAULT = "default";
 }

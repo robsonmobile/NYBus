@@ -19,12 +19,18 @@ package com.mindorks.nybus;
  * Created by amitshekhar on 14/08/17.
  */
 
+import com.mindorks.nybus.AndroidScheduler.SchedulerProviderImplementation;
 import com.mindorks.nybus.Scheduler.SchedulerProvider;
+import com.mindorks.nybus.channel.EventChannel;
 import com.mindorks.nybus.internal.NYBusHandler;
 
 public class NYBus {
     private static NYBus sNYBusInstance;
     private NYBusHandler mNYBusHandler;
+
+    static {
+        NYBus.get().setSchedulerProvider(new SchedulerProviderImplementation());
+    }
 
     public static NYBus get() {
         if (sNYBusInstance == null) {
@@ -45,4 +51,21 @@ public class NYBus {
     public void setSchedulerProvider(SchedulerProvider schedulerProvider) {
         mNYBusHandler.setSchedulerProvider(schedulerProvider);
     }
+
+    public void register(Object object) {
+        register(object, EventChannel.DEFAULT);
+    }
+
+    public void register(Object object, String channelId) {
+        mNYBusHandler.register(object, channelId);
+    }
+
+    public void unregister(Object object) {
+        unregister(object, EventChannel.DEFAULT);
+    }
+
+    public void unregister(Object object, String channelId) {
+        mNYBusHandler.unregister(object, channelId);
+    }
+
 }
